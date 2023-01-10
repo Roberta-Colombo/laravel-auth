@@ -1,3 +1,5 @@
+{{-- PW: portfolio123 --}}
+
 @extends('layouts.app')
 
 @section('content')
