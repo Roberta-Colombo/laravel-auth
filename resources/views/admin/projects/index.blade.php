@@ -1,20 +1,51 @@
 @extends('layouts.admin')
 
 @section('content')
-<h1>Projects</h1>
-<a class="btn btn-success" href="{{route('admin.projects.create')}}">Add new project</a>
-@if(session()->has('message'))
-<div class="alert alert-success mb-3 mt-3">
-    {{ session()->get('message') }}
-</div>
-@endif
+<header>
+    <ul class="d-flex justify-content-end">
+        <a href="#"><li class="me-5">Add new project<i class="fa-solid fa-file-code ms-2"></i></li></a>
+        <a href="#"><li>Notifications<i class="fa-solid fa-bell ms-2"></i></li></a>
+    </ul>
+</header>
 
-<ul>
-    @foreach ($projects as $project)
-    <li>
-        <a href="{{route('admin.projects.show', $project->slug)}}" title="View Project">{{$project->name}}</a>
-    </li>
-    @endforeach
-</ul>
+<main>
+    <h1>Published projects</h1>
+    {{-- @if(session()->has('message'))
+    <div class="alert alert-success mb-3 mt-3">
+        {{ session()->get('message') }}
+    </div>
+    @endif --}}
+    
+    <table class="table table-striped mt-5">
+        <thead>
+        <tr>
+            <th>#id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Publishing date</th>
+        </tr>
+        </thead>
+    
+        <tbody>
+            @foreach ($projects as $project)
+            <tr>
+                <td>
+                    <a href="{{route('admin.projects.show', $project->slug)}}" title="View Project">{{$project->id}}</a>
+                </td>
+                <td>
+                    <a href="{{route('admin.projects.show', $project->slug)}}" title="View Project">{{$project->name}}</a>
+                </td>
+                <td>
+                    {{Str::limit($project->description, 80)}}
+                </td>
+                <td>{{$project->created_at}}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 
+    <div class="d-flex justify-content-end mt-5">
+        <a class="add-btn" href="{{route('admin.projects.create')}}">Add new project</a>
+    </div>
+</main>
 @endsection

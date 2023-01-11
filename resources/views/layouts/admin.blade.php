@@ -21,16 +21,13 @@
 
 <body>
  <div id="admin">
-    {{-- @include('partials.admin.sidebar') --}}
-
-    <div id="wrapper">
-        {{-- @include('partials.admin.header') --}}
-
-        <main class="mt-4 container-fluid">
+    <div id="wrapper" class="d-flex">
+        @include('partials.admin.left-sidebar')
+        <main class="container-fluid">
             @yield('content')
         </main>
+        @include('partials.admin.right-sidebar')
     </div>
-
  </div>
 
   <!--Main layout-->
