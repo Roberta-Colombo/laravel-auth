@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
-use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,7 +27,7 @@ class ProjectController extends Controller
         $slug = Project::generateSlug($request->name);
         $data['slug'] = $slug;
         if ($request->hasFile('image_1')) {
-            $img_path = Storage::disk('public')->put('project_image', $request->image_1);
+            $img_path = Storage::disk('public')->put('project_images', $request->image_1);
             $data['image_1'] = $img_path;
         }
 
@@ -51,9 +50,17 @@ class ProjectController extends Controller
         $data = $request->validated();
         $slug = Project::generateSlug($request->name);
         $data['slug'] = $slug;
+        if ($request->hasFile('image_1')) {
+            if ($project->image_1) {
+                Storage::delete($project->image_1);
+            }
+
+            $path = Storage::disk('public')->put('project_images', $request->image_1);
+            $data['image_1'] = $path;
+        }
 
         $project->update($data);
-        return redirect()->route('admin.projects.index')->with('message', "$project->name updated successfully");
+        return redirect()->route('admin.projects.show', $project->slug)->with('message', "$project->name updated successfully");
     }
 
     public function destroy(Project $project)
