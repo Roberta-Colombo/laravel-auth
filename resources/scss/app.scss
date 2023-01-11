@@ -110,15 +110,28 @@ $fa-font-path: "../fonts/font-awesome" !default;
             }
         }
 
-        .edit-btn {
-            background-color: green;
-            border-color: green;
-            padding: 5px 11px;
+        .show-btn {
+            padding: 8px 14px;
             border-radius: 5px;
+        }
+
+        .delete-btn, .reset-btn {
+            background-color: rgb(158, 35, 107);
+            border-color: rgb(158, 35, 107);
+            color: white; 
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+
+        .edit-btn, .submit-btn {
+            background-color: rgb(137, 196, 137);
+            border-color: rgb(137, 196, 137);
             color: white;
 
             &:hover {
-                opacity: 0.8;
+                opacity: 0.9;
             }
         }
 
@@ -126,6 +139,10 @@ $fa-font-path: "../fonts/font-awesome" !default;
             a {
                 font-weight: normal;
             }
+        }
+
+        textarea {
+            height: 160px;
         }
     }
 }

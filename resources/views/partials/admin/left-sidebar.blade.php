@@ -7,7 +7,7 @@
     </header>
 
     <nav>
-        <ul class="nav flex-column">
+        <ul class="nav flex-column mt-5">
             <li class="nav-item"> <a class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'my-active' : '' }}" href="{{route('admin.dashboard')}}">
                 <i class="fa-solid fa-chart-line me-2"></i> Dashboard
             </a></li>
@@ -23,5 +23,4 @@
             </li>
         </ul>
     </nav>
-   
 </section>

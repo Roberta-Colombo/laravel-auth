@@ -17,11 +17,11 @@
 
 
     <div class="d-flex justify-content-end align-items-center">
-        <a href="{{route('admin.projects.edit', $project->slug)}}" title="Edit Project"><button class="edit-btn"><i class="fa-solid fa-pen"></i></button></a>
+        <a href="{{route('admin.projects.edit', $project->slug)}}" title="Edit Project"><button class="show-btn edit-btn"><i class="fa-solid fa-pen"></i></button></a>
         <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class="delete-button btn btn-danger ms-3" data-item-title="{{$project->name}}"><i class="fa-solid fa-trash-can"></i></button>
+            <button type="submit" class="show-btn delete-btn ms-3" data-item-title="{{$project->name}}"><i class="fa-solid fa-trash-can"></i></button>
          </form>
     </div>
 </main>

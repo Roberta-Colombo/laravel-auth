@@ -3,18 +3,18 @@
 @section('content')
 <header>
     <ul class="d-flex justify-content-end">
-        <a href="#"><li class="me-5">Add new project<i class="fa-solid fa-file-code ms-2"></i></li></a>
+        <a href="{{route('admin.projects.create')}}"><li class="me-5">Add new project<i class="fa-solid fa-file-code ms-2"></i></li></a>
         <a href="#"><li>Notifications<i class="fa-solid fa-bell ms-2"></i></li></a>
     </ul>
 </header>
 
 <main>
     <h1>Published projects</h1>
-    {{-- @if(session()->has('message'))
+    @if(session()->has('message'))
     <div class="alert alert-success mb-3 mt-3">
         {{ session()->get('message') }}
     </div>
-    @endif --}}
+    @endif
     
     <table class="table table-striped mt-5">
         <thead>
