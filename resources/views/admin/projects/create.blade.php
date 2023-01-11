@@ -42,13 +42,13 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                       </div>
-                      {{-- <div class="mb-3">
-                        <label for="cover_image" class="form-label">Image</label>
-                        <input type="file" name="cover_image" id="cover_image" class="form-control  @error('cover_image') is-invalid @enderror" >
-                        @error('cover_image')
+                      <div class="mb-3">
+                        <label for="image_1" class="form-label">Image</label>
+                        <input type="file" name="image_1" id="image_1" class="form-control  @error('image_1') is-invalid @enderror" >
+                        @error('image_1')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                      </div> --}}
+                      </div>
                       <button type="submit" class="btn btn-success">Submit</button>
                       <button type="reset" class="btn btn-primary">Reset</button>
                 </form>
