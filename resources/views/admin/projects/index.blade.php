@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<h1>Projects</h1>
+<a class="btn btn-success" href="{{route('admin.projects.create')}}">Add new project</a>
+@if(session()->has('message'))
+<div class="alert alert-success mb-3 mt-3">
+    {{ session()->get('message') }}
+</div>
+@endif
+
 <ul>
     @foreach ($projects as $project)
     <li>
@@ -8,4 +16,5 @@
     </li>
     @endforeach
 </ul>
+
 @endsection
