@@ -13,7 +13,7 @@ class UpdateProjectTypeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class UpdateProjectTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'type' => 'required|unique:project_types|max:80',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'type.required' => 'Please add a type',
+            'type.unique:project_types' => 'Project type already in use',
+            'type.max' => 'Project type cannot exceed 80 characters',
         ];
     }
 }

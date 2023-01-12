@@ -17,6 +17,11 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ Route::currentRouteName() == 'admin.project-types.index' ? 'my-active' : '' }}" href="{{route('admin.project-types.index')}}">
+                    <i class="fa-solid fa-gears me-2"></i> Types
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fa-solid fa-laptop-code me-2"></i> Stacks
                 </a>

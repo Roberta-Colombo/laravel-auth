@@ -12,13 +12,13 @@
             </div>
             @endif
         </div> --}}
-    <h1>Create Post</h1>
+    <h1>Create Project</h1>
         <div class="row bg-white">
             <div class="col-12">
                 <form action="{{route('admin.projects.store')}}" method="POST" enctype="multipart/form-data" class="p-4">
                     @csrf
                       <div class="mb-3">
-                        <label for="title" class="form-label">Progetto</label>
+                        <label for="title" class="form-label">Project</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name">
                         @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
