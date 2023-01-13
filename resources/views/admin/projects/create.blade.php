@@ -13,7 +13,7 @@
             @endif
         </div> --}}
     <h1>Create Project</h1>
-        <div class="row bg-white">
+        <div class="row">
             <div class="col-12">
                 <form action="{{route('admin.projects.store')}}" method="POST" enctype="multipart/form-data" class="p-4">
                     @csrf
@@ -42,8 +42,10 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                       </div>
-                      <button type="submit" class="btn btn-success">Submit</button>
-                      <button type="reset" class="btn btn-primary">Reset</button>
+
+                      <button type="submit" class="btn btn-success submit-btn mt-4">Submit</button>
+                      <button type="reset" class="btn btn-primary reset-btn mt-4 ms-2
+                      ">Reset</button>
                 </form>
             </div>
         </div>
