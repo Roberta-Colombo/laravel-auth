@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProjectType;
+use App\Models\Project;
 use App\Http\Requests\StoreProjectTypeRequest;
 use App\Http\Requests\UpdateProjectTypeRequest;
 
@@ -33,9 +34,9 @@ class ProjectTypeController extends Controller
 
     public function show(ProjectType $projectType)
     {
-        return view('admin.project-types.show', compact('projectType'));
+        $projects = Project::all();
+        return view('admin.project-types.show', compact('projectType', 'projects'));
     }
-
 
     public function edit(ProjectType $projectType)
     {

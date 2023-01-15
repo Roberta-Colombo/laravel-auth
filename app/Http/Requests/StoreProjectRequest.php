@@ -27,7 +27,9 @@ class StoreProjectRequest extends FormRequest
             'name' => 'required|unique:projects|max:150',
             'description' => 'nullable',
             'image_1' => 'required',
-            'github_link' => 'required'
+            'github_link' => 'required',
+            'project_type_id' => 'nullable|exists:project_types,id',
+            'technologies' => 'nullable|exists:technologies,id'
         ];
     }
 

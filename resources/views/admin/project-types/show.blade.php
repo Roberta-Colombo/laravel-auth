@@ -6,10 +6,10 @@
 
     {{-- Aggiugere lista progetti 
 
-         <div class="show-link mt-4">
-        <strong>See more at:</strong> <a href="#">{{$project->github_link}}</a>
-    </div> --}}
-
+    <div>
+        {{$projectType->projects}}
+    </div>
+    --}}
 
     <div class="d-flex justify-content-end align-items-center">
         <a href="{{route('admin.project-types.edit', $projectType->slug)}}" title="Edit Type"><button class="show-btn edit-btn"><i class="fa-solid fa-pen"></i></button></a>

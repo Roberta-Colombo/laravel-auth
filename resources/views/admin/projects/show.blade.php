@@ -7,11 +7,23 @@
         <img src="{{ asset('storage/' . $project->image_1) }}">
     </div>
 
-    <div>
-        {{$project->description}}
+    <div class="mb-3">
+        <strong>Type:</strong> {{$project->projectType ? $project->projectType->type : 'No category'}}
     </div>
 
-    <div class="show-link mt-4">
+    <div class="mb-3">
+        {{-- per togliere la formattazione html proveniente dalla casella editor aggiunta con script --}}
+        {!! $project->description !!}
+    </div>
+
+    @if($project->technologies && count($project->technologies) > 0)
+    <span><strong>Technologies used:</strong></span>
+       @foreach ($project->technologies as $technology)
+        <span>{{$technology->name}}</span>
+       @endforeach
+    @endif
+
+    <div class="show-link my-4">
         <strong>See more at:</strong> <a href="#">{{$project->github_link}}</a>
     </div>
 

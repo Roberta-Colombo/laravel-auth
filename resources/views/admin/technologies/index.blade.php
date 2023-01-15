@@ -9,7 +9,7 @@
 </header>
 
 <main>
-    <h1>Available project types</h1>
+    {{-- <h1>Available technologies</h1>
     @if(session()->has('message'))
     <div class="alert alert-success mb-3 mt-3">
         {{ session()->get('message') }}
@@ -20,28 +20,81 @@
         <thead>
         <tr>
             <th>#id</th>
-            <th>Type</th>
+            <th>Technology</th>
             <th>Number of projects</th>
         </tr>
         </thead>
     
         <tbody>
-            @foreach ($projectTypes as $projectType)
+            @foreach ($technologies as $technology)
             <tr>
                 <td>
-                    <a href="{{route('admin.project-types.show', $projectType->slug)}}" title="View Project Type">{{$projectType->id}}</a>
+                   {{$technology->id}}
                 </td>
                 <td>
-                    <a href="{{route('admin.project-types.show', $projectType->slug)}}" title="View Project Type">{{$projectType->type}}</a>
+                {{$technology->name}}</a>
                 </td>
-                <td>{{count($projectType->projects)}}</td>
+                <td>{{count($technology->projects)}}</td>
             </tr>
             @endforeach
         </tbody>
-    </table>
+    </table> --}}
 
-    <div class="d-flex justify-content-end mt-5">
-        <a class="add-btn" href="{{route('admin.project-types.create')}}">Add new type</a>
+    <h1>Available technologies</h1>
+    <p class="mt-3">Click on the technology name to change it or add a new one:</p>
+    @if(session()->has('message'))
+    <div class="alert alert-success mb-3 mt-3">
+        {{ session()->get('message') }}
     </div>
+    @endif
+
+    <table class="table table-striped mt-5">
+        <thead>
+        <tr>
+            {{-- <th>#id</th> --}}
+            <th>Technology</th>
+            <th>Number of projects</th>
+        </tr>   
+        </thead>
+    
+        <tbody>
+            @foreach($technologies as $technology)
+            <tr>
+                <td>
+                    <form id="tag-{{$technology->id}}" action="{{route('admin.technologies.update', $technology->slug)}}" method="post">
+                    @csrf
+                    @method('PATCH')
+                    <input class="border-0 bg-transparent" type="text" name="name" value="{{old('name', $technology->name)}}">
+                    </form>
+                </td>
+
+                <td>
+                    {{$technology->projects && count($technology->projects) > 0 ? count($technology->projects) : 'not in use'}}
+                </td>
+
+                <td>
+                    <form action="{{route('admin.technologies.destroy', $technology->slug)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="delete-btn btn ms-3" data-item-title="{{$technology->name}}"><i class="fa-solid fa-trash-can"></i></button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+            <tr>
+                <td>
+                    <form id="tag-{{$technology->id}}" action="{{route('admin.technologies.store', $technology->slug)}}" method="post">
+                        @csrf
+                        @method('POST')
+                        <input class="border-0 bg-transparent" type="text" name="name" value="Add new technology">
+                    </form>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
 </main>
+
+@include('partials.admin.modal-delete')
 @endsection

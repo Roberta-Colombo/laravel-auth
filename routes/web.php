@@ -33,7 +33,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
         Route::resource('project-types', ProjectTypeController::class)->parameters(['project-types' => 'projectType:slug']);
-        Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug'])->except('show', 'create', 'edit');
+        Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug'])->except('show', 'edit');
     });
 
 // Route::middleware('auth')->group(function () {

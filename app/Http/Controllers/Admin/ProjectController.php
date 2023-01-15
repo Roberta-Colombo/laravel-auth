@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\ProjectType;
+use App\Models\Technology;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -18,7 +20,9 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view('admin.projects.create');
+        $projectTypes = ProjectType::all();
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('projectTypes', 'technologies'));
     }
 
     public function store(StoreProjectRequest $request)
@@ -32,6 +36,11 @@ class ProjectController extends Controller
         }
 
         $new_project = Project::create($data);
+
+        if ($request->has('technologies')) {
+            $new_project->technologies()->attach($request->technologies);
+        }
+
         return redirect()->route('admin.projects.show', $new_project->slug);
     }
 
@@ -42,7 +51,9 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $projectTypes = ProjectType::all();
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'projectTypes', 'technologies'));
     }
 
     public function update(UpdateProjectRequest $request, Project $project)
@@ -60,11 +71,21 @@ class ProjectController extends Controller
         }
 
         $project->update($data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($request->technologies);
+        } else {
+            $project->technologies()->sync([]);
+        }
         return redirect()->route('admin.projects.show', $project->slug)->with('message', "$project->name updated successfully");
     }
 
     public function destroy(Project $project)
     {
+        if ($project->image_1) {
+            Storage::delete($project->image_1);
+        }
+
         $project->delete();
         return redirect()->route('admin.projects.index')->with('message', "$project->name deleted successfully");
     }
