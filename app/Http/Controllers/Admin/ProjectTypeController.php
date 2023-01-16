@@ -44,7 +44,9 @@ class ProjectTypeController extends Controller
 
     public function edit(ProjectType $projectType)
     {
-        return view('admin.project-types.edit', compact('projectType'));
+        $projectTypes = ProjectType::all();
+
+        return view('admin.project-types.edit', compact('projectType', 'projectTypes'));
     }
 
     public function update(UpdateProjectTypeRequest $request, ProjectType $projectType)
@@ -53,7 +55,7 @@ class ProjectTypeController extends Controller
         $slug = ProjectType::generateSlug($request->type);
         $data['slug'] = $slug;
         $projectType->update($data);
-        return redirect()->route('admin.project-types.show')->with('message', "$projectType->type updated successfully");
+        return redirect()->route('admin.project-types.index')->with('message', "$projectType->type updated successfully");
     }
 
 

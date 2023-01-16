@@ -32,9 +32,12 @@
                     <a href="{{route('admin.project-types.show', $projectType->slug)}}" title="View Project Type">{{$projectType->id}}</a>
                 </td>
                 <td>
-                    <a href="{{route('admin.project-types.show', $projectType->slug)}}" title="View Project Type">{{$projectType->type}}</a>
+                    {{$projectType->type}}
                 </td>
-                <td>{{count($projectType->projects)}}</td>
+                <td>
+                    <a href="{{route('admin.project-types.show', $projectType->slug)}}" title="View Project Type">
+                    {{count($projectType->projects)}}</a>
+                </td>
             </tr>
             @endforeach
         </tbody>
