@@ -34,8 +34,12 @@ class ProjectTypeController extends Controller
 
     public function show(ProjectType $projectType)
     {
-        $projects = Project::all();
-        return view('admin.project-types.show', compact('projectType', 'projects'));
+        // $projects = Project::with('projectType')->get();
+
+        $projects = Project::with('projectType')->get();
+        $projectTypes = ProjectType::all();
+
+        return view('admin.project-types.show', compact('projectType', 'projects', 'projectTypes'));
     }
 
     public function edit(ProjectType $projectType)
