@@ -72,9 +72,10 @@
 
                       <div class="mb-3">
                         <div>
-                          <img class="my-3" id="uploadPreview" width="100" src="{{asset('storage/' . $project->image_1)}}" alt="{{$project->name}}">
+                          <div>Current image:</div>
+                          <img class="my-4" id="uploadPreview" width="100" src="{{asset('storage/' . $project->image_1)}}" alt="{{$project->name}}">
                         </div>
-                        <label for="image_1" class="form-label">Upload new image</label>
+                        <label for="image_1" class="form-label">Upload new image:</label>
                         <input type="file" id="image_1" name="image_1" class="form-control @error('image_1') is-invalid @enderror">
                         @error('image_1')
                         <div class="invalid-feedback">{{ $message }}</div>

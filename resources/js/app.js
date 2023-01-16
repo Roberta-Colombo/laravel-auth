@@ -3,6 +3,8 @@ import "~resources/scss/app.scss";
 import * as bootstrap from "bootstrap";
 import.meta.glob(["../img/**", "../fonts/**"]);
 
+// gestisce i modal
+
 const deleteSubmitButtons = document.querySelectorAll(".delete-button");
 
 deleteSubmitButtons.forEach((button) => {
@@ -25,4 +27,19 @@ deleteSubmitButtons.forEach((button) => {
             button.parentElement.submit();
         });
     });
+});
+
+//gestisce la preview dell'immagine in projects-create
+
+const previewImage = document.getElementById("add_image");
+previewImage.addEventListener("change", (event) => {
+    var oFReader = new FileReader();
+    // var image  =  previewImage.files[0];
+    // console.log(image);
+    oFReader.readAsDataURL(previewImage.files[0]);
+
+    oFReader.onload = function (oFREvent) {
+        //console.log(oFREvent);
+        document.getElementById("uploadPreview").src = oFREvent.target.result;
+    };
 });

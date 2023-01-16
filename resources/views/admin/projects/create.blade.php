@@ -71,8 +71,12 @@
                         @enderror
                       </div>
                       <div class="my-3">
-                        <label for="image_1" class="form-label">Image</label>
-                        <input type="file" name="image_1" id="image_1" class="form-control  @error('image_1') is-invalid @enderror" >
+                        <div class="mb-3">
+                          <img id="uploadPreview" width="100" src="https://via.placeholder.com/300x200">
+                        </div>
+
+                        <label for="add_image" class="form-label">Upload an image</label>
+                        <input type="file" name="image_1" id="add_image" class="form-control  @error('image_1') is-invalid @enderror" >
                         @error('image_1')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
