@@ -48,4 +48,5 @@
         <a class="add-btn" href="{{route('admin.projects.create')}}">Add new project</a>
     </div>
 </main>
+{{ $projects->links('vendor.pagination.bootstrap-5') }}
 @endsection

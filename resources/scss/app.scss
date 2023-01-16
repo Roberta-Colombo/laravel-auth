@@ -144,5 +144,10 @@ $fa-font-path: "../fonts/font-awesome" !default;
         textarea {
             height: 160px;
         }
+
+        .page-item.active .page-link {
+            background-color:rgb(144,161,245);
+            border-color: rgb(127, 141, 215);
+        }
     }
 }
