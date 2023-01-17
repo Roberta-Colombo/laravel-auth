@@ -48,13 +48,7 @@
                         <div class="mb-2">Technologies used:</div>
                         @foreach ($technologies as $technology)
                         <div class="form-check form-check-inline">
-
-                            {{-- @if (old("technologies")) --}}
-                                <input type="checkbox" class="form-check-input" id="{{$technology->slug}}" name="technologies[]" value="{{$technology->id}}">
-                                 {{in_array( $technology->id, old("technologies", []) ) ? 'checked' : ''}}
-                             {{-- @else
-                                <input type="checkbox" class="form-check-input" id="{{$technology->slug}}" name="technologies[]" value="{{$technology->id}}" {{$project->technologies->contains($technology) ? 'checked' : ''}}>
-                              @endif --}}
+                              <input type="checkbox" class="form-check-input" id="{{$technology->slug}}" name="technologies[]" value="{{$technology->id}}" {{$project->technologies->contains($technology) ? 'checked' : ''}}>       
                             <label class="form-check-label" for="{{$technology->slug}}">{{$technology->name}}</label>
                         </div>
                     @endforeach

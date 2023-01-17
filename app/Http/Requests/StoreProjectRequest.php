@@ -29,7 +29,7 @@ class StoreProjectRequest extends FormRequest
             'image_1' => 'required',
             'github_link' => 'required',
             'project_type_id' => 'nullable|exists:project_types,id',
-            'technologies' => 'nullable|exists:technologies,id'
+            'technology' => 'nullable|exists:technologies,id'
         ];
     }
 

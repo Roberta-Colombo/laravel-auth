@@ -25,6 +25,7 @@ class StoreTechnologyRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:technologies',
+
         ];
     }
 }

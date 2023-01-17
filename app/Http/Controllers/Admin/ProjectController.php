@@ -18,11 +18,11 @@ class ProjectController extends Controller
         return view('admin.projects.index', compact('projects'));
     }
 
-    public function create()
+    public function create(Project $project)
     {
         $projectTypes = ProjectType::all();
         $technologies = Technology::all();
-        return view('admin.projects.create', compact('projectTypes', 'technologies'));
+        return view('admin.projects.create', compact('projectTypes', 'technologies', 'project'));
     }
 
     public function store(StoreProjectRequest $request)
